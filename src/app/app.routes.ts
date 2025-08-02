@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home-page/home.component';
-import { AdminComponent } from './admin-page/admin.component';
-import { SessionCardComponent } from './components/session-card/session-card.component';
-import { NotFound } from './components/not-found/not-found.component';
-import { PautaDetailsComponent } from './components/pauta-details/pauta-details.component';
+import { HomeComponent } from './pages/home-page/home.component';
+import { AdminComponent } from './pages/admin-page/admin.component';
+import { NotFound } from './pages/not-found/not-found.component';
+import { PautaDetailsComponent } from './pages/pauta-details/pauta-details.component';
 
 export const routes: Routes = [{
     path: '',

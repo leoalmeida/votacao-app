@@ -1,5 +1,5 @@
-<section>
-    <div class="searchContainer">
+<app-searchbar (messageEvent)="handleMessage($event)"/>
+<!--<section class="searchContainer">
         <div class="searchButton">🔍</div>
         <input
             type="text"
@@ -17,13 +17,12 @@
                 class="clearButton"
                 aria-label="Limpar pesquisa">×</button>
         }
-    </div>
-    <section class="results">
-        @for(session of filteredSessionList(); track session.pauta.nome){
-            <app-session-card [session]="session"></app-session-card>
-        }
-        @empty {
-            <div class="not-found">Nenhuma pauta disponível</div>
-        }
-    </section>
+</section>-->
+<section class="results">
+    @for(session of filteredSessionList(); track session.pauta.nome){
+        <app-session-card [session]="session"></app-session-card>
+    }
+    @empty {
+        <div class="not-found">Nenhuma pauta disponível</div>
+    }
 </section>

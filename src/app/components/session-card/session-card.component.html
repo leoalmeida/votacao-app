@@ -3,8 +3,8 @@
                     created: session.status==='CREATED',
                     cancelled: session.status==='CANCELLED'}" 
         class="cardButton" 
-        (click)="handleStatusToggle()" 
-        [disabled]="session.status!=='OPEN_TO_VOTE' || session.votoComputado">
+        (click)="openDialog()" 
+        [disabled]="(session.status!=='CREATED' && session.status!=='OPEN_TO_VOTE') || session.votoComputado">
     <div class="content">
         <h3 class="title">{{session.pauta.nome}}</h3>
         <p class="description">Descrição: {{session.pauta.descricao}}</p>
@@ -16,11 +16,4 @@
             }
         </div>
     </div>
-
-    <!--@if(!session.votoComputado){
-       <button (click)="handleStatusToggle()" 
-            class="statusButton" 
-            aria-label="Votar na pauta">Votar
-        </button>
-    }-->
 </button>
