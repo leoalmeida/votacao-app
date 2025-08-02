@@ -1,0 +1,26 @@
+<button [ngClass]="{open: session.status==='OPEN_TO_VOTE' && !session.votoComputado,
+                    closed: session.status==='CLOSED',
+                    created: session.status==='CREATED',
+                    cancelled: session.status==='CANCELLED'}" 
+        class="cardButton" 
+        (click)="handleStatusToggle()" 
+        [disabled]="session.status!=='OPEN_TO_VOTE' || session.votoComputado">
+    <div class="content">
+        <h3 class="title">{{session.pauta.nome}}</h3>
+        <p class="description">Descrição: {{session.pauta.descricao}}</p>
+        <p class="category">Categoria: {{session.pauta.categoria}}</p>
+        <div class="details">
+            <span>Status: {{session.status}}</span>
+            @if(session.votoComputado){
+                <span>VOTO COMPUTADO</span>
+            }
+        </div>
+    </div>
+
+    <!--@if(!session.votoComputado){
+       <button (click)="handleStatusToggle()" 
+            class="statusButton" 
+            aria-label="Votar na pauta">Votar
+        </button>
+    }-->
+</button>

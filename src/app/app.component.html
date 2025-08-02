@@ -1,0 +1,36 @@
+<main id="content" role="main">
+    <div class="css-alc8zz">
+        <header>
+            <div class="head-container">
+                <nav class="navgroup">
+                    <div class="navbar">
+                        <div class="internal-navbar">
+                            <div class="nav-left">
+                                <button type="button" (click)="showMenu()" class="head-menu" aria-label="Toggle-menu">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" aria-hidden="true" focusable="false" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                                </button>
+                                <img alt="Votacao" class="brand-logo" src="/assets/logo.png" alt="logo" aria-hidden="true" title="Votação App">
+                                <h1 class="head-title">{{title()}}</h1>
+                            </div>
+                            <div class="nav-right">
+                                <button type="button" 
+                                        id="menu-button-6" 
+                                        class="btn-associado">
+                                    <div class="group-associado">
+                                        <span class="title-associado">Leonardo</span>
+                                        <span class="avatar-associado">
+                                            <img src="" alt="Leonardo" class="img-avatar-associado">
+                                        </span>
+                                    </div>      
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <section class="content">
+            <router-outlet />
+        </section>
+    </div>
+</main>
