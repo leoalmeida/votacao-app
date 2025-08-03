@@ -1,0 +1,9 @@
+<app-searchbar (messageEvent)="handleMessage($event)"/>
+<section class="results">
+    @for(session of filteredSessionList(); track session.pauta.nome){
+        <app-session-card [session]="session"></app-session-card>
+    }
+    @empty {
+        <div class="not-found">Nenhuma pauta disponível</div>
+    }
+</section>

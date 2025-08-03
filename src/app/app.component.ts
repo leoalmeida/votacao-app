@@ -1,10 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, ToolbarComponent],
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,10 +1,11 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Admin } from './pages/admin/admin';
-import { PautaDetails } from './pages/pauta-details/pauta-details';
 import { NotFound } from './pages/not-found/not-found';
+import { PautaDetails } from './pages/pauta-details/pauta-details';
 
-export const routes: Routes = [{
+const routes: Routes = [{
     path: '',
     component: Home,
     title: 'Home Page'
@@ -21,3 +22,10 @@ export const routes: Routes = [{
   },
   { path: '**', component: NotFound }
 ];
+
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
