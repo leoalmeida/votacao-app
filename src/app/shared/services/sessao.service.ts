@@ -1,63 +1,68 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Pauta } from '../types/pauta';
 import { Observable } from 'rxjs';
-import { session, sessions } from '../../../mocks/sessoes';
 import { Sessao } from '../types/sessao';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessaoService {
-  readonly baseUrl = '/api/v1/sessao';
-  private apiData = [...sessions];
+  private baseUrl:string = '/ms-sessoes/v1/sessoes';
+  //private apiData = [...sessions];
   private sessionsList = signal<Sessao[]>([]);
 
-  private mockHttpCall = <T>(result: T) => {
-    return new Observable<T>(s => {
-        s.next(result);
-        s.complete();
-    });
+  //private logger = inject(Logger);
+  private http: HttpClient = inject(HttpClient);
+  constructor(){
+    this.baseUrl = environment.sessaoApi;
   }
 
   items = this.sessionsList.asReadonly();
 
-  getAll(){
-    this.mockHttpCall<Sessao[]>(this.apiData)
-            .subscribe(xs => this.sessionsList.set(xs));
+  getAll(): void{
+    this.http.get<Sessao[]>(`${this.baseUrl}`)
+                  .subscribe(xs => this.sessionsList.set(xs));
   }
 
-  getById(id: string): Sessao | undefined {
-    return this.apiData.find(sessao => sessao.id === id);
+  getById(id: number): Observable<Sessao> {
+    //this.logger.log(`Fetched.`);
+    return this.http.get<Sessao>(`${this.baseUrl}/${id}`);
   }
-
-  //POST - "/"
-  submitSession(idAssociado: string, pauta: Pauta) {
-    console.log(`Solicitando nova votação: associado: ${idAssociado}, pauta: ${pauta.nome}.`);
-    let id: string = "10";
-    let newSession = {id,pauta,...session};
-    this.apiData = [...this.apiData, newSession];
-    this.mockHttpCall<Sessao>(newSession)
-        .subscribe(x => this.sessionsList.update(xs => [...xs, x]));
-  }
-
+  
   //PUT - "/{idSessao}/iniciar"
-  startSession(idSessao: string) {
+  startSession(idSessao: number) {
     console.log(`Iniciando sessão de votação: sessão: ${idSessao}.`);
+    this.http.put(`${this.baseUrl}/${idSessao}/iniciar`,null);
+    return true;
   }
 
   //PUT - "/{idSessao}/finalizar"
-  finalizeSession(idSessao: string) {
+  finalizeSession(idSessao: number) {
     console.log(`Finalizando sessão de votação: sessão: ${idSessao}.`);
+    this.http.put(`${this.baseUrl}/${idSessao}/finalizar`,null);
+    return true;
   }
 
   //PUT - "/{idSessao}/cancelar"
-  cancelSession(idSessao: string) {
+  cancelSession(idSessao: number) {
     console.log(`Cancelando sessão de votação: sessão: ${idSessao}.`);
+    this.http.put(`${this.baseUrl}/${idSessao}/cancelar`,null);
+    return true;
   }
 
   //PUT - "/{idSessao}/votar"
-  addSessionVote(idSessao: string, opcaoVoto: string) {
+  addSessionVote(idSessao: number, opcaoVoto: string) {
     console.log(`Contabilizando voto para a sessão de votação: sessão: ${idSessao}. opcaoVoto: ${opcaoVoto}`);
+    this.http.put(`${this.baseUrl}/${idSessao}/votar/${opcaoVoto}`,null);
+    return true;
   }
-
+  
+  //DELETE - "/"
+  removerAssociado(idSessao: number): boolean {
+    console.log(`Removendo sessão: ${idSessao}.`);
+    this.http.delete(`${this.baseUrl}/${idSessao}`);
+    return true;
+  }
 }

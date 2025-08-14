@@ -1,7 +1,12 @@
-import { Component, computed, inject, Input, signal } from '@angular/core';
-import { Sessao } from '../../shared/types/sessao';
-import { SessaoService } from '../../shared/services/sessao.service';
+import { Component, computed, inject, Input, Signal, signal } from '@angular/core';
 import { Pauta } from '../../shared/types/pauta';
+import { AssociadoService } from '../../shared/services/associado.service';
+import { PautaService } from '../../shared/services/pauta.service';
+import { Associado } from '../../shared/types/associado';
+import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { LoadingService } from '../../shared/services/loading.service';
+import { TokenStorageService } from '../../shared/services/token-storage.service';
+import { UserToken } from '../../shared/types/user-token';
 
 @Component({
   selector: 'app-home',
@@ -10,21 +15,43 @@ import { Pauta } from '../../shared/types/pauta';
   styleUrl: './home.css'
 })
 export class Home {
- @Input() loggedUser!: string;
-  sessionsList: Sessao[] = [];
-  private sessaoService: SessaoService = inject(SessaoService);
+  protected loggedUser = signal({} as UserToken);
+  pautaList: Pauta[] = [];
   searchQuery = signal<string>('');
+  private pautaService: PautaService = inject(PautaService);
+  private associadoService: AssociadoService = inject(AssociadoService);
+  private loadingService: LoadingService = inject(LoadingService);
+  private tokenStorageService: TokenStorageService = inject(TokenStorageService);
+  private navigator: Router = inject(Router);
 
   constructor() {
-    this.sessaoService.getAll();
+    try {
+      this.loadingService.loadingOn();
+      this.tokenStorageService.loggedUser$.subscribe(user => {
+          this.loggedUser.set(user);
+          this.pautaService.buascarPautasComVotos(user.id);
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.loadingService.loadingOff();
+    }
   }
 
-  filteredSessionList = computed(() => {
-    const normalizedQuery = this.searchQuery()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-    return this.sessaoService.items().filter(x => x?.pauta.nome.toLowerCase().includes(normalizedQuery));
+  filteredPautaList = computed(() => {
+    try {
+      this.loadingService.loadingOn();
+      const normalizedQuery = this.searchQuery()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      return this.pautaService.items().filter(x => x?.nome.toLowerCase().includes(normalizedQuery));
+    } catch (error) {
+      console.log(error);
+      return;
+    } finally {
+      this.loadingService.loadingOff();
+    }
   });
 
   handleMessage(message: string) {
@@ -32,7 +59,10 @@ export class Home {
     this.searchQuery.set(message);
   }
 
-  onItemAdded(pauta: Pauta) {
-    this.sessaoService.submitSession(this.loggedUser,pauta);
+  onCreatePauta(){
+    this.navigator.navigate(['pauta-details'], {
+      queryParams: { type: 'new' }
+    });
   }
+
 }

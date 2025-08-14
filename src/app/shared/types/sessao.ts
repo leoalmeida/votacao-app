@@ -1,13 +1,12 @@
-import { Pauta } from "./pauta";
+import { Voto } from "./voto";
 
-export interface Sessao {
-  id: string;
-  pauta: Pauta;
+export type Sessao = {
+  id: number;
   status: string;
-  votoComputado: boolean;
   totalizadores?: [];
   resultado?: "" | "NAO" | "SIM";
   dataFimSessao?: string;
   dataInicioSessao?: string;
+  votoAssociado?: Voto | null;
 }
 

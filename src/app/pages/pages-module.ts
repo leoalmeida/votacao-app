@@ -8,6 +8,9 @@ import { Home } from './home/home';
 import { SessaoService } from '../shared/services/sessao.service';
 import { AssociadoService } from '../shared/services/associado.service';
 import { ComponentsModule } from '../shared/components/components-module';
+import { FormsModule } from '@angular/forms';
+import { PautaService } from '../shared/services/pauta.service';
+import { VotacaoService } from '../shared/services/votacao.service';
 
 
 
@@ -16,10 +19,10 @@ import { ComponentsModule } from '../shared/components/components-module';
       Home, Admin, NotFound, AssociadoDetails, PautaDetails
    ],
    imports: [
-      CommonModule, ComponentsModule
+      CommonModule, ComponentsModule, FormsModule
    ],
    providers: [
-      SessaoService, AssociadoService
+      SessaoService, PautaService, VotacaoService ,AssociadoService
    ],
    exports: [
       Home, Admin, NotFound, AssociadoDetails, PautaDetails

@@ -2,22 +2,37 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Admin } from './pages/admin/admin';
 import { PautaDetails } from './pages/pauta-details/pauta-details';
-import { NotFound } from './pages/not-found/not-found';
+import { LoginComponent } from './pages/login-form/login-form';
+import { AssociadoDetails } from './pages/associado-details/associado-details';
+import { canActivateUser } from './shared/guards/can-activate-user';
 
 export const routes: Routes = [{
-    path: '',
+      path: 'login',
+      component: LoginComponent,
+      data: { title: 'Login' }
+    },{
+    path: 'home',
     component: Home,
-    title: 'Home Page'
+    data: { title: 'Home Page' },
+    canActivate: [canActivateUser]
   },
   {
     path: 'admin',
     component: Admin,
-    title: 'Admin'
+    data: { title: 'Admin Page' },
+    canActivate: [canActivateUser]
   },
   {
-    path: 'pauta',
+    path: 'pauta/:type',
     component: PautaDetails,
-    title: 'Nova pauta'
+    data: { title: 'Nova pauta' },
+    canActivate: [canActivateUser]
   },
-  { path: '**', component: NotFound }
+  {
+    path: 'associado/:type',
+    component: AssociadoDetails,
+    data: { title: 'Novo associado' },
+    canActivate: [canActivateUser]
+  },
+  { path: '**', redirectTo: 'login' }
 ];
