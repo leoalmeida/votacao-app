@@ -1,10 +1,10 @@
-name: Build dos artefatos de Frontend do projeto
+name: Code Quality Analysis for Backend Module
 
 on:
    workflow_call:
 
 jobs:
-   build-frontend:
+   code-quality-frontend:
       runs-on: ubuntu-latest # Use the latest Ubuntu runner
       strategy:
          matrix:
@@ -18,19 +18,16 @@ jobs:
            with:
               node-version: ${{ matrix.node-version }}
               cache: "npm"
-              cache-dependency-path: frontend/package-lock.json
+              cache-dependency-path: ./package-lock.json
 
          - name: Install Dependencies
            working-directory: frontend
            run: npm ci
 
-         - name: Build Angular Application
+         - name: Run Prettier check to ensure code formatting
            working-directory: frontend
-           run: npm run build
+           run: npm run prettier:check
 
-         - name: Upload Frontend Artifact
-           uses: actions/upload-artifact@v6
-           with:
-              name: frontend-dist
-              path: frontend/dist/
-              retention-days: 1
+         - name: Run Prettier check to ensure code formatting
+           working-directory: frontend
+           run: npm run lint -- --fix

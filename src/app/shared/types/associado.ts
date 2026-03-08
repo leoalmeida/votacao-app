@@ -1,10 +1,10 @@
-import { Voto } from "./voto";
+import { Voto } from './voto';
 
-export type Associado = {
+export interface Associado {
    id: number;
    email: string;
    nome: string;
    telefone: string;
    accessToken?: string;
-   votacaoAssociado?: Map<number,Voto> | null;
+   votacaoAssociado?: Map<number, Voto> | null;
 }

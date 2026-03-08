@@ -1,6 +1,6 @@
-export type Usuario = {
-  id: string;
-  email: string;
-  login: string;
-  passwd: string;
+export interface Usuario {
+   id: string;
+   email: string;
+   login: string;
+   passwd: string;
 }

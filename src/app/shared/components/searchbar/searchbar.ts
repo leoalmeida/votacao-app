@@ -1,19 +1,19 @@
-import {Component,output} from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
-  selector: 'app-searchbar',
-  standalone: false,
-  templateUrl: './searchbar.html',
-  styleUrl: './searchbar.css'
+   selector: 'app-searchbar',
+   standalone: false,
+   templateUrl: './searchbar.html',
+   styleUrl: './searchbar.css',
 })
 export class Searchbar {
- messageEvent = output<string>();
+   messageEvent = output<string>();
 
-  clear(){
-    this.messageEvent.emit("");
-  }
+   clear() {
+      this.messageEvent.emit('');
+   }
 
-  onSearchUpdated(sq: string) {
-    this.messageEvent.emit(sq);
-  }
+   onSearchUpdated(sq: string) {
+      this.messageEvent.emit(sq);
+   }
 }

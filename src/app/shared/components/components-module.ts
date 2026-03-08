@@ -14,7 +14,14 @@ import { DateFormatPipe } from '../pipes/date-format.pipe';
 
 @NgModule({
    declarations: [
-      LoginComponent, PautaCard, Searchbar, Statusbar, Toolbar, SimpleDialog, VotacaoDialog, LoadingIndicatorComponent
+      LoginComponent,
+      PautaCard,
+      Searchbar,
+      Statusbar,
+      Toolbar,
+      SimpleDialog,
+      VotacaoDialog,
+      LoadingIndicatorComponent,
    ],
    imports: [
       CommonModule,
@@ -22,11 +29,19 @@ import { DateFormatPipe } from '../pipes/date-format.pipe';
       ReactiveFormsModule,
       MaterialModule,
       AsyncPipe,
-      DateFormatPipe
+      DateFormatPipe,
    ],
    exports: [
-      LoginComponent, PautaCard, Searchbar, Statusbar, Toolbar, SimpleDialog, VotacaoDialog, LoadingIndicatorComponent,DateFormatPipe
+      LoginComponent,
+      PautaCard,
+      Searchbar,
+      Statusbar,
+      Toolbar,
+      SimpleDialog,
+      VotacaoDialog,
+      LoadingIndicatorComponent,
+      DateFormatPipe,
    ],
-   providers: [DateFormatPipe]
+   providers: [DateFormatPipe],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

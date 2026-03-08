@@ -1,3 +1,5 @@
-<p class="listing-location" *ngIf="votoComputado">
-    {{votoComputado}}
-</p>
+@if (votoComputado) {
+   <p class="listing-location">
+      {{ votoComputado }}
+   </p>
+}

@@ -1,7 +1,7 @@
-import { Pauta } from "./pauta";
+import { Pauta } from './pauta';
 
 export interface DialogVotacao {
-  pauta: Pauta;
-  loggedUser: string;
-  opcaoEscolhida: "" | "NAO" | "SIM";
+   pauta: Pauta;
+   loggedUser: string;
+   opcaoEscolhida: '' | 'NAO' | 'SIM';
 }

@@ -1,10 +1,10 @@
-import { Sessao } from "./sessao";
+import { Sessao } from './sessao';
 
-export type Pauta = {
-  id?: number;
-  nome: string;
-  descricao: string;
-  categoria: string;
-  idAssociado: number;
-  sessaoDto?: Sessao | null;
+export interface Pauta {
+   id?: number;
+   nome: string;
+   descricao: string;
+   categoria: string;
+   idAssociado: number;
+   sessaoDto?: Sessao | null;
 }

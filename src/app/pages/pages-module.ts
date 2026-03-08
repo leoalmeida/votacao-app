@@ -12,20 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { PautaService } from '../shared/services/pauta.service';
 import { VotacaoService } from '../shared/services/votacao.service';
 
-
-
 @NgModule({
-   declarations: [
-      Home, Admin, NotFound, AssociadoDetails, PautaDetails
-   ],
-   imports: [
-      CommonModule, ComponentsModule, FormsModule
-   ],
-   providers: [
-      SessaoService, PautaService, VotacaoService ,AssociadoService
-   ],
-   exports: [
-      Home, Admin, NotFound, AssociadoDetails, PautaDetails
-   ]
+   declarations: [Home, Admin, NotFound, AssociadoDetails, PautaDetails],
+   imports: [CommonModule, ComponentsModule, FormsModule],
+   providers: [SessaoService, PautaService, VotacaoService, AssociadoService],
+   exports: [Home, Admin, NotFound, AssociadoDetails, PautaDetails],
 })
-export class PagesModule { }
+export class PagesModule {}
