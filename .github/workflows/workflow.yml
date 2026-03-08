@@ -1,33 +1,28 @@
 name: SpringBoot MicroServices CI
 
-on:
-  push:
-    branches: [ "*" ]
+
+#on:
+#  workflow_call:
+on: 
   pull_request:
     branches: [ "main" ]
 
 jobs:
-
-  #test-project:
-  #  uses: ./.github/workflows/tests.yml
-  #  secrets: inherit
-
-  build-project:
-    #  needs: test-project
-    uses: ./.github/workflows/angular-build.yml
+  frontend-workflow:
+    uses: ./.github/workflows/workflow-frontend.yml
     secrets: inherit
 
   #zap-scan:
   #  needs: build-project
-  #  uses: ./.github/workflows/zap_scan.yml
-  #  secrets: inherit
-
-  #docker:
-  #  needs: zap-scan
-  #  uses: ./.github/workflows/Docker.yml
+  #  uses: ./.github/workflows/zapscan.yml
   #  secrets: inherit
   
-  #deploy_ecs:
+  #docker:
+  #  needs: zap-scan
+  #  uses: ./.github/workflows/docker.yml
+  #  secrets: inherit
+  
+  #deploy_google:
   #  needs: docker
-  #  uses: ./.github/workflows/ECS.yml
+  #  uses: ./.github/workflows/release-gcloud.yml
   #  secrets: inherit
