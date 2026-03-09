@@ -21,13 +21,13 @@ jobs:
               cache-dependency-path: ./package-lock.json
 
          - name: Install Dependencies
-           working-directory: frontend
+           working-directory: .
            run: npm ci
 
          - name: Run Prettier check to ensure code formatting
-           working-directory: frontend
+           working-directory: .
            run: npm run prettier
 
          - name: Run Prettier check to ensure code formatting
-           working-directory: frontend
+           working-directory: .
            run: npm run lint -- --fix
