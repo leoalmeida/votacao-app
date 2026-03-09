@@ -21,16 +21,16 @@ jobs:
               cache-dependency-path: frontend/package-lock.json
 
          - name: Install Dependencies
-           working-directory: frontend
+           working-directory: .
            run: npm ci
 
          - name: Build Angular Application
-           working-directory: frontend
+           working-directory: .
            run: npm run build
 
          - name: Upload Frontend Artifact
            uses: actions/upload-artifact@v6
            with:
               name: frontend-dist
-              path: frontend/dist/
+              path: ./dist/
               retention-days: 1
