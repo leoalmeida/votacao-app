@@ -33,11 +33,12 @@
             <button matButton>Iniciar votação</button>
          }
          @if (pauta.sessaoDto.status === "OPEN_TO_VOTE") {
-            @if (pauta.sessaoDto.votoAssociado) {
+            @if (pauta.sessaoDto.votoAssociado?.dataVoto) {
                <span class="registered"
                   >VOTO REGISTRADO EM
                   {{
-                     pauta.sessaoDto.votoAssociado.dataVoto | dateFormatPipe
+                     (pauta.sessaoDto.votoAssociado?.dataVoto ?? '')
+                        | dateFormatPipe
                   }}</span
                >
             } @else {
