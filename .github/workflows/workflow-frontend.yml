@@ -1,7 +1,10 @@
 name: Script de workflow para o Frontend do projeto
 
 on:
-   workflow_call:
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
    code-quality-frontend:
@@ -9,6 +12,7 @@ jobs:
       secrets: inherit
 
    test-frontend:
+      needs: [code-quality-frontend]
       uses: ./.github/workflows/testes-frontend.yml
       secrets: inherit
 
