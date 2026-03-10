@@ -26,4 +26,4 @@ jobs:
 
          - name: Run Frontend Tests
            working-directory: .
-           run: npm test
+           run: npm test -- --no-watch --coverage
