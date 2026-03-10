@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
-import { TitleService } from './shared/services/title.service';
+import { TitleService } from './core/title.service';
 
 describe('AppComponent', () => {
    beforeEach(async () => {
       await TestBed.configureTestingModule({
-         declarations: [AppComponent],
+         imports: [AppComponent],
          providers: [
             {
                provide: TitleService,

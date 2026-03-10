@@ -1,38 +1,41 @@
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
-import { Admin } from './pages/admin/admin';
-import { PautaDetails } from './pages/pauta-details/pauta-details';
-import { LoginComponent } from './pages/login-form/login-form';
-import { AssociadoDetails } from './pages/associado-details/associado-details';
+
 import { canActivateUser } from './shared/guards/can-activate-user';
 
 export const routes: Routes = [
    {
       path: 'login',
-      component: LoginComponent,
+      loadComponent: () =>
+         import('./core/auth/login/login').then((m) => m.LoginComponent),
       data: { title: 'Login' },
    },
    {
       path: 'home',
-      component: Home,
+      loadComponent: () => import('./features/home/home').then((m) => m.Home),
       data: { title: 'Home Page' },
       canActivate: [canActivateUser],
    },
    {
       path: 'admin',
-      component: Admin,
+      loadComponent: () => import('./features/admin/admin').then((m) => m.Admin),
       data: { title: 'Admin Page' },
       canActivate: [canActivateUser],
    },
    {
       path: 'pauta/:type',
-      component: PautaDetails,
+      loadComponent: () =>
+         import('./features/pautas/pauta-details/pauta-details').then(
+            (m) => m.PautaDetails,
+         ),
       data: { title: 'Nova pauta' },
       canActivate: [canActivateUser],
    },
    {
       path: 'associado/:type',
-      component: AssociadoDetails,
+      loadComponent: () =>
+         import('./features/associados/associado-details/associado-details').then(
+            (m) => m.AssociadoDetails,
+         ),
       data: { title: 'Novo associado' },
       canActivate: [canActivateUser],
    },

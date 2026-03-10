@@ -1,11 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { TitleService } from './shared/services/title.service';
+import { TitleService } from './core/title.service';
+import { Toolbar } from './core/toolbar/toolbar';
+import { RouterOutlet } from '@angular/router';
+import { LoadingIndicatorComponent } from './core/loading-indicator/loading-indicator';
 
 @Component({
    selector: 'app-root',
-   standalone: false,
    templateUrl: './app.component.html',
    styleUrl: './app.component.css',
+   imports: [Toolbar, RouterOutlet, LoadingIndicatorComponent],
 })
 export class AppComponent implements OnInit {
    protected readonly title = signal('Votação de Pautas');
