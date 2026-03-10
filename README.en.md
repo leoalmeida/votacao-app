@@ -6,73 +6,73 @@
 ![Node](https://img.shields.io/badge/node-20%2B-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-Aplicacao frontend Angular para o fluxo de votacao, integrada ao `votacao-backend` via API Gateway.
+Angular frontend application for the voting flow, integrated with `votacao-backend` through the API Gateway.
 
-## Sumario
+## Table of Contents
 
-- [Visao Geral](#visao-geral)
-- [Requisitos](#requisitos)
-- [Instalacao](#instalacao)
-- [Execucao](#execucao)
-- [Testes e Qualidade](#testes-e-qualidade)
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Running](#running)
+- [Tests and Quality](#tests-and-quality)
 - [Docker](#docker)
-- [Estrutura](#estrutura)
+- [Structure](#structure)
 - [Troubleshooting](#troubleshooting)
 
-## Visao Geral
+## Overview
 
 - Stack: Angular 21, TypeScript, Angular Material
-- Porta local: `3001`
-- Backend esperado: `http://localhost:8082`
+- Local port: `3001`
+- Expected backend: `http://localhost:8082`
 
-As URLs das APIs estao centralizadas em `src/environments/environment.ts`:
+API URLs are centralized in `src/environments/environment.ts`:
 
 - `ms-sessoes`: `http://localhost:8082/ms-sessoes/v1/sessoes`
 - `ms-associados`: `http://localhost:8082/ms-associados/v1/associados`
 - `ms-pautas`: `http://localhost:8082/ms-pautas/v1/pautas`
 - `votos`: `http://localhost:8082/ms-sessoes/v1/votos`
 
-## Requisitos
+## Requirements
 
 - Node.js 20+
 - npm 10+
 
-## Instalacao
+## Installation
 
 ```powershell
 Set-Location "c:\Users\leo_a\projetos\votacao-app"
 npm install
 ```
 
-## Execucao
+## Running
 
-Subir em desenvolvimento:
+Start in development mode:
 
 ```powershell
 npm start
 ```
 
-Build de producao:
+Production build:
 
 ```powershell
 npm run build
 ```
 
-## Testes e Qualidade
+## Tests and Quality
 
-Executar testes unitarios:
+Run unit tests:
 
 ```powershell
 npm test -- --watch=false
 ```
 
-Executar lint:
+Run lint:
 
 ```powershell
 npm run lint
 ```
 
-Formatar codigo:
+Format code:
 
 ```powershell
 npm run prettier
@@ -80,13 +80,13 @@ npm run prettier
 
 ## Docker
 
-Build e execucao com Compose:
+Build and run with Compose:
 
 ```powershell
 docker compose up --build
 ```
 
-## Estrutura
+## Structure
 
 ```text
 votacao-app/
@@ -102,5 +102,5 @@ votacao-app/
 
 ## Troubleshooting
 
-- Erro de CORS/404 nas chamadas: valide se `votacao-backend` esta ativo e o gateway em `localhost:8082`.
-- Porta ocupada no frontend: altere a porta no script `start` do `package.json`.
+- CORS/404 errors on API calls: confirm `votacao-backend` is running and gateway is reachable at `localhost:8082`.
+- Frontend port already in use: change the port in the `start` script in `package.json`.
