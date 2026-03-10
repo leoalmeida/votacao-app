@@ -3,8 +3,8 @@ import {
    MatDialogRef,
    MatDialogModule,
 } from '@angular/material/dialog';
-import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
    selector: 'app-simple-dialog',

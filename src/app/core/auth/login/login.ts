@@ -9,10 +9,10 @@ import { AuthStore } from '../auth-store';
 import { TokenStorageStore } from '../token-storage-store';
 import { merge } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatCard, MatCardTitle, MatCardContent, MatCardModule } from '@angular/material/card';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
    selector: 'app-login-form',

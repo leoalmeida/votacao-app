@@ -1,5 +1,4 @@
 import {
-   platformBrowser,
    BrowserModule,
    bootstrapApplication,
 } from '@angular/platform-browser';

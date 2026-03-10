@@ -9,21 +9,16 @@ import { Pauta } from '../pauta';
 import { VotacaoStore } from '../../votacao/votacao-store';
 import { UserToken } from '../../../core/auth/user-token';
 import {
-   MatCard,
-   MatCardTitle,
-   MatCardContent,
-   MatCardSubtitle,
-   MatCardActions,
    MatCardModule,
 } from '@angular/material/card';
 import { NgClass } from '@angular/common';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 import {
    MatButtonToggleModule,
 } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
-import { CdkScrollable, CdkScrollableModule } from '@angular/cdk/scrolling';
+import { CdkScrollableModule } from '@angular/cdk/scrolling';
 import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
 //import { DateFormatPipe } from '../../pipes/date-format.pipe';
 
